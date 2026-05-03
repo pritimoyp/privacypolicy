@@ -3,121 +3,522 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Delete Account — LinkShelfAI</title>
+  <title>Delete Account &amp; Data — LinkShelfAI</title>
   <style>
+    :root {
+      --brand: #2563eb;
+      --brand-light: #eff6ff;
+      --brand-dark: #1d4ed8;
+      --danger: #dc2626;
+      --danger-light: #fef2f2;
+      --danger-border: #fecaca;
+      --text: #111827;
+      --text-muted: #6b7280;
+      --border: #e5e7eb;
+      --bg: #ffffff;
+      --bg-subtle: #f9fafb;
+      --radius: 8px;
+      --shadow: 0 1px 3px rgba(0,0,0,.08), 0 1px 2px rgba(0,0,0,.05);
+    }
+
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
     body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
       font-size: 16px;
-      line-height: 1.7;
-      color: #1a1a1a;
-      background: #ffffff;
-      padding: 2rem 1rem;
+      line-height: 1.75;
+      color: var(--text);
+      background: var(--bg);
     }
-    .container { max-width: 680px; margin: 0 auto; }
-    h1 { font-size: 1.7rem; font-weight: 700; margin-bottom: 0.25rem; }
-    .subtitle { color: #666; font-size: 0.95rem; margin-bottom: 2.5rem; }
-    h2 { font-size: 1.05rem; font-weight: 700; margin-top: 2rem; margin-bottom: 0.5rem; border-bottom: 1px solid #e5e5e5; padding-bottom: 0.3rem; }
-    p { margin-bottom: 0.75rem; }
-    ol, ul { padding-left: 1.4rem; margin-bottom: 0.75rem; }
-    li { margin-bottom: 0.4rem; }
-    .card {
-      border: 1px solid #e5e5e5;
-      border-radius: 10px;
-      padding: 1.25rem 1.5rem;
-      margin: 1rem 0;
+
+    /* ── Header ── */
+    header {
+      background: var(--brand);
+      padding: 0 1.5rem;
     }
-    .card h3 { font-size: 1rem; font-weight: 600; margin-bottom: 0.5rem; }
-    .badge {
-      display: inline-block;
-      font-size: 0.75rem;
-      font-weight: 600;
-      padding: 0.2rem 0.55rem;
-      border-radius: 999px;
-      margin-bottom: 0.6rem;
-    }
-    .badge-auto { background: #e8f5e9; color: #2e7d32; }
-    .badge-manual { background: #fff3e0; color: #e65100; }
-    .step-num {
-      display: inline-flex;
+    .header-inner {
+      max-width: 900px;
+      margin: 0 auto;
+      display: flex;
       align-items: center;
-      justify-content: center;
-      width: 1.6rem;
-      height: 1.6rem;
-      background: #1a73e8;
-      color: #fff;
-      border-radius: 50%;
-      font-size: 0.8rem;
-      font-weight: 700;
-      margin-right: 0.5rem;
+      gap: .75rem;
+      height: 64px;
+    }
+    .app-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 9px;
+      overflow: hidden;
       flex-shrink: 0;
     }
-    .step { display: flex; align-items: flex-start; margin-bottom: 0.6rem; }
-    .step p { margin: 0; padding-top: 0.15rem; }
-    .note {
-      background: #f0f7ff;
-      border-left: 4px solid #1a73e8;
-      padding: 0.6rem 1rem;
-      border-radius: 0 6px 6px 0;
-      margin: 1rem 0;
-      font-size: 0.95rem;
+    .app-icon img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .brand-name {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #fff;
+      letter-spacing: -.01em;
     }
+    .brand-sub {
+      font-size: .75rem;
+      color: rgba(255,255,255,.7);
+      font-weight: 400;
+    }
+
+    /* ── Layout ── */
+    .page {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 1.5rem 4rem;
+    }
+
+    /* ── Hero ── */
+    .hero {
+      padding: 2.5rem 0 2rem;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 2rem;
+    }
+    .hero h1 {
+      font-size: 1.75rem;
+      font-weight: 800;
+      letter-spacing: -.02em;
+      margin-bottom: .35rem;
+      color: var(--text);
+    }
+    .hero .meta {
+      color: var(--text-muted);
+      font-size: .9rem;
+    }
+
+    /* ── Two-column layout ── */
+    .layout {
+      display: grid;
+      grid-template-columns: 200px 1fr;
+      gap: 2.5rem;
+      align-items: start;
+    }
+    @media (max-width: 680px) {
+      .layout { grid-template-columns: 1fr; }
+      .toc-wrap { display: none; }
+    }
+
+    /* ── TOC ── */
+    .toc-wrap {
+      position: sticky;
+      top: 1.5rem;
+    }
+    .toc {
+      background: var(--bg-subtle);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1rem;
+      font-size: .82rem;
+    }
+    .toc-title {
+      font-weight: 700;
+      font-size: .75rem;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+      color: var(--text-muted);
+      margin-bottom: .65rem;
+    }
+    .toc ol {
+      list-style: none;
+      padding: 0;
+      counter-reset: toc;
+    }
+    .toc li {
+      counter-increment: toc;
+      margin-bottom: .3rem;
+      line-height: 1.4;
+    }
+    .toc a {
+      color: var(--text-muted);
+      text-decoration: none;
+      display: flex;
+      gap: .4rem;
+      transition: color .15s;
+    }
+    .toc a:hover { color: var(--brand); }
+    .toc a::before {
+      content: counter(toc) ".";
+      font-size: .75rem;
+      flex-shrink: 0;
+      padding-top: .05rem;
+    }
+
+    /* ── Content ── */
+    .content section { margin-bottom: 2.25rem; }
+
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: .55rem;
+      margin-bottom: .75rem;
+    }
+    .section-num {
+      width: 26px;
+      height: 26px;
+      border-radius: 6px;
+      background: var(--brand-light);
+      color: var(--brand);
+      font-size: .75rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    h2 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--text);
+    }
+    h3 {
+      font-size: .95rem;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: .4rem;
+    }
+    p { margin-bottom: .75rem; color: var(--text); }
+    ul, ol { padding-left: 1.5rem; margin-bottom: .75rem; }
+    li { margin-bottom: .35rem; }
+    a { color: var(--brand); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    code {
+      font-family: "SF Mono", "Fira Code", Consolas, monospace;
+      font-size: .85em;
+      background: #f3f4f6;
+      padding: .1em .35em;
+      border-radius: 4px;
+      color: #374151;
+    }
+
+    /* ── Method card ── */
+    .method-card {
+      background: var(--bg-subtle);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.25rem 1.4rem;
+      margin-top: .5rem;
+      box-shadow: var(--shadow);
+    }
+    .method-card-header {
+      display: flex;
+      align-items: center;
+      gap: .6rem;
+      margin-bottom: .75rem;
+    }
+
+    /* ── Badges ── */
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: .3rem;
+      font-size: .72rem;
+      font-weight: 700;
+      padding: .2rem .6rem;
+      border-radius: 99px;
+      text-transform: uppercase;
+      letter-spacing: .04em;
+    }
+    .badge-auto {
+      background: #dcfce7;
+      color: #15803d;
+      border: 1px solid #bbf7d0;
+    }
+    .badge-manual {
+      background: #fff7ed;
+      color: #c2410c;
+      border: 1px solid #fed7aa;
+    }
+
+    /* ── Steps ── */
+    .steps { display: flex; flex-direction: column; gap: .55rem; margin: .75rem 0; }
+    .step {
+      display: flex;
+      align-items: flex-start;
+      gap: .7rem;
+    }
+    .step-num {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: var(--brand);
+      color: #fff;
+      font-size: .75rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: .15rem;
+    }
+    .step p { margin: 0; font-size: .93rem; }
+
+    /* ── Note / Callout ── */
+    .note {
+      display: flex;
+      gap: .75rem;
+      background: var(--brand-light);
+      border: 1px solid #bfdbfe;
+      border-radius: var(--radius);
+      padding: .8rem 1rem;
+      margin: .75rem 0;
+      font-size: .9rem;
+      align-items: flex-start;
+    }
+    .note-icon { flex-shrink: 0; margin-top: .05rem; }
+    .note-icon svg { fill: var(--brand); }
+
+    /* ── Warning callout ── */
+    .warning {
+      display: flex;
+      gap: .75rem;
+      background: var(--danger-light);
+      border: 1px solid var(--danger-border);
+      border-radius: var(--radius);
+      padding: .8rem 1rem;
+      margin: .75rem 0;
+      font-size: .9rem;
+      align-items: flex-start;
+    }
+    .warning-icon { flex-shrink: 0; margin-top: .05rem; }
+    .warning-icon svg { fill: var(--danger); }
+
+    /* ── Deleted data checklist ── */
+    .delete-list {
+      list-style: none;
+      padding: 0;
+      display: grid;
+      gap: .5rem;
+    }
+    .delete-list li {
+      display: flex;
+      gap: .65rem;
+      align-items: flex-start;
+      background: var(--danger-light);
+      border: 1px solid var(--danger-border);
+      border-radius: var(--radius);
+      padding: .6rem .9rem;
+      font-size: .9rem;
+      margin: 0;
+    }
+    .delete-list li::before { content: none; }
+    .del-icon { color: var(--danger); flex-shrink: 0; margin-top: .1rem; font-size: .9rem; }
+
+    /* ── Contact card ── */
+    .contact-card {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      background: var(--bg-subtle);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1rem 1.25rem;
+      margin-top: .5rem;
+    }
+    .avatar {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: var(--brand);
+      color: #fff;
+      font-weight: 700;
+      font-size: 1.1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .contact-info .name { font-weight: 600; font-size: .95rem; }
+    .contact-info .email { font-size: .85rem; color: var(--text-muted); }
+    .contact-info .email a { color: var(--brand); }
+
+    /* ── Email button ── */
     .email-btn {
-      display: inline-block;
-      margin-top: 0.5rem;
-      background: #1a73e8;
+      display: inline-flex;
+      align-items: center;
+      gap: .45rem;
+      margin-top: .85rem;
+      background: var(--brand);
       color: #fff;
       text-decoration: none;
-      padding: 0.6rem 1.25rem;
-      border-radius: 6px;
+      padding: .6rem 1.25rem;
+      border-radius: var(--radius);
       font-weight: 600;
-      font-size: 0.95rem;
+      font-size: .92rem;
+      transition: background .15s;
     }
-    .email-btn:hover { background: #1558b0; }
-    footer { margin-top: 3rem; padding-top: 1rem; border-top: 1px solid #e5e5e5; color: #888; font-size: 0.85rem; }
+    .email-btn:hover { background: var(--brand-dark); text-decoration: none; }
+    .email-btn svg { fill: #fff; flex-shrink: 0; }
+
+    /* ── Footer ── */
+    footer {
+      margin-top: 3rem;
+      padding-top: 1.25rem;
+      border-top: 1px solid var(--border);
+      color: var(--text-muted);
+      font-size: .82rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: .5rem;
+      justify-content: space-between;
+      align-items: center;
+    }
+    footer a { color: var(--brand); }
+    footer .badge-footer {
+      display: inline-flex;
+      align-items: center;
+      gap: .35rem;
+      background: var(--bg-subtle);
+      border: 1px solid var(--border);
+      border-radius: 99px;
+      padding: .2rem .65rem;
+      font-size: .78rem;
+    }
+    footer .dot {
+      width: 6px; height: 6px;
+      background: #16a34a;
+      border-radius: 50%;
+    }
   </style>
 </head>
 <body>
-  <div class="container">
-    <h1>Delete Your Account &amp; Data</h1>
-    <p class="subtitle">LinkShelfAI — Data Deletion Instructions</p>
 
-    <p>You can delete your account data at any time. LinkShelfAI stores data in two places — follow the steps below for each.</p>
-
-    <h2>1. Local App Data</h2>
-    <div class="card">
-      <span class="badge badge-auto">Automatic</span>
-      <h3>Uninstall the app</h3>
-      <p>All locally stored data (links, folders, profile info) is permanently deleted when you uninstall LinkShelfAI from your device. No action needed beyond uninstalling.</p>
+<header>
+  <div class="header-inner">
+    <div class="app-icon">
+      <img src="app_icon.png" alt="LinkShelfAI" />
     </div>
-
-    <h2>2. Google Drive Backup Data</h2>
-    <div class="card">
-      <span class="badge badge-manual">Manual — 3 steps</span>
-      <h3>Delete hidden app data from Google Drive</h3>
-      <p>If you used the backup feature, a private backup file is stored in your Google Drive App Data folder. Delete it by following these steps:</p>
-      <br />
-      <div class="step"><span class="step-num">1</span><p>Open <strong>Google Drive</strong> on your phone or browser.</p></div>
-      <div class="step"><span class="step-num">2</span><p>Tap the <strong>Settings</strong> (gear icon) → <strong>Manage apps</strong>.</p></div>
-      <div class="step"><span class="step-num">3</span><p>Find <strong>LinkShelfAI</strong> → tap <strong>Delete hidden app data</strong> → confirm.</p></div>
-      <div class="note">This folder is private and only accessible by you. No one else — including the developer — can view or access your backup data.</div>
+    <div>
+      <div class="brand-name">LinkShelfAI</div>
+      <div class="brand-sub">Personal Link Organizer</div>
     </div>
-
-    <h2>3. Request Full Account Deletion</h2>
-    <p>If you need additional assistance or want to confirm your data has been removed, email us and we will respond within 7 days.</p>
-    <p><strong>Email:</strong> <a href="mailto:pritimoy54@gmail.com">pritimoy54@gmail.com</a></p>
-    <a class="email-btn" href="mailto:pritimoy54@gmail.com?subject=Delete%20My%20Account%20-%20LinkShelfAI">Email Us to Delete Account</a>
-
-    <h2>What Gets Deleted</h2>
-    <ul>
-      <li>All saved links and folders (local storage)</li>
-      <li>Google profile info stored locally (name, email, photo)</li>
-      <li>Backup file in Google Drive App Data folder</li>
-    </ul>
-
-    <footer>
-      <p>LinkShelfAI &mdash; <a href="privacy_policy.html">Privacy Policy</a></p>
-    </footer>
   </div>
+</header>
+
+<div class="page">
+  <div class="hero">
+    <h1>Delete Account &amp; Data</h1>
+    <p class="meta">Data Deletion Instructions for LinkShelfAI</p>
+  </div>
+
+  <div class="layout">
+
+    <!-- TOC -->
+    <aside class="toc-wrap">
+      <nav class="toc">
+        <div class="toc-title">Contents</div>
+        <ol>
+          <li><a href="#local">Local App Data</a></li>
+          <li><a href="#drive">Google Drive Backup</a></li>
+          <li><a href="#request">Request Deletion</a></li>
+          <li><a href="#whats-deleted">What Gets Deleted</a></li>
+        </ol>
+      </nav>
+    </aside>
+
+    <!-- Main content -->
+    <main class="content">
+
+      <p>You can delete your account data at any time. LinkShelfAI stores data in two places — follow the steps below for each.</p>
+
+      <section id="local">
+        <div class="section-header">
+          <div class="section-num">1</div>
+          <h2>Local App Data</h2>
+        </div>
+        <div class="method-card">
+          <div class="method-card-header">
+            <span class="badge badge-auto">
+              <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+              Automatic
+            </span>
+            <h3>Uninstall the app</h3>
+          </div>
+          <p>All locally stored data — links, folders, and profile info — is permanently deleted when you uninstall LinkShelfAI from your device. No additional steps needed.</p>
+        </div>
+      </section>
+
+      <section id="drive">
+        <div class="section-header">
+          <div class="section-num">2</div>
+          <h2>Google Drive Backup Data</h2>
+        </div>
+        <div class="method-card">
+          <div class="method-card-header">
+            <span class="badge badge-manual">Manual — 3 steps</span>
+            <h3>Delete hidden app data from Google Drive</h3>
+          </div>
+          <p>If you used the backup feature, a private backup file is stored in your Google Drive App Data folder. Delete it by following these steps:</p>
+          <div class="steps">
+            <div class="step">
+              <span class="step-num">1</span>
+              <p>Open <strong>Google Drive</strong> on your phone or browser.</p>
+            </div>
+            <div class="step">
+              <span class="step-num">2</span>
+              <p>Tap the <strong>Settings</strong> (gear icon) → <strong>Manage apps</strong>.</p>
+            </div>
+            <div class="step">
+              <span class="step-num">3</span>
+              <p>Find <strong>LinkShelfAI</strong> → tap <strong>Delete hidden app data</strong> → confirm.</p>
+            </div>
+          </div>
+          <div class="note">
+            <span class="note-icon">
+              <svg width="16" height="16" viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 0 20A10 10 0 0 0 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
+            </span>
+            <span>This folder is private and accessible only by you. The developer cannot view or access your backup data.</span>
+          </div>
+        </div>
+      </section>
+
+      <section id="request">
+        <div class="section-header">
+          <div class="section-num">3</div>
+          <h2>Request Full Account Deletion</h2>
+        </div>
+        <p>If you need additional assistance, email us and we will respond within <strong>7 days</strong>.</p>
+        <div class="contact-card">
+          <div class="avatar">P</div>
+          <div class="contact-info">
+            <div class="name">Pritimoy</div>
+            <div class="email"><a href="mailto:pritimoy54@gmail.com">pritimoy54@gmail.com</a></div>
+          </div>
+        </div>
+        <a class="email-btn" href="mailto:pritimoy54@gmail.com?subject=Delete%20My%20Account%20-%20LinkShelfAI">
+          <svg width="15" height="15" viewBox="0 0 24 24"><path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"/></svg>
+          Email Us to Delete Account
+        </a>
+      </section>
+
+      <section id="whats-deleted">
+        <div class="section-header">
+          <div class="section-num">4</div>
+          <h2>What Gets Deleted</h2>
+        </div>
+        <div class="warning">
+          <span class="warning-icon">
+            <svg width="16" height="16" viewBox="0 0 24 24"><path d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z"/></svg>
+          </span>
+          <span>Deletion is <strong>permanent and irreversible</strong>. Make sure to export any data you want to keep before proceeding.</span>
+        </div>
+        <ul class="delete-list">
+          <li><span class="del-icon">✕</span> All saved links and folders (local storage)</li>
+          <li><span class="del-icon">✕</span> Google profile info stored locally (name, email, photo)</li>
+          <li><span class="del-icon">✕</span> Backup file in Google Drive App Data folder</li>
+        </ul>
+      </section>
+
+      <footer>
+        <span>© 2026 LinkShelfAI · <a href="privacy_policy.html">Privacy Policy</a></span>
+        <span class="badge-footer"><span class="dot"></span>Applies to v1.0 and later</span>
+      </footer>
+
+    </main>
+  </div>
+</div>
+
 </body>
 </html>
