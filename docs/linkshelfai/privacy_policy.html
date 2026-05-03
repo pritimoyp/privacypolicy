@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Privacy Policy — LinkShelfAI</title>
+  <style>
+    :root {
+      --brand: #2563eb;
+      --brand-light: #eff6ff;
+      --brand-dark: #1d4ed8;
+      --text: #111827;
+      --text-muted: #6b7280;
+      --border: #e5e7eb;
+      --bg: #ffffff;
+      --bg-subtle: #f9fafb;
+      --radius: 8px;
+      --shadow: 0 1px 3px rgba(0,0,0,.08), 0 1px 2px rgba(0,0,0,.05);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      font-size: 16px;
+      line-height: 1.75;
+      color: var(--text);
+      background: var(--bg);
+    }
+
+    /* ── Header ── */
+    header {
+      background: var(--brand);
+      padding: 0 1.5rem;
+    }
+    .header-inner {
+      max-width: 900px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      gap: .75rem;
+      height: 64px;
+    }
+    .app-icon {
+      width: 36px;
+      height: 36px;
+      background: rgba(255,255,255,.2);
+      border-radius: 9px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .app-icon svg { fill: #fff; }
+    .brand-name {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #fff;
+      letter-spacing: -.01em;
+    }
+    .brand-sub {
+      font-size: .75rem;
+      color: rgba(255,255,255,.7);
+      font-weight: 400;
+    }
+
+    /* ── Layout ── */
+    .page {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 1.5rem 4rem;
+    }
+
+    /* ── Hero ── */
+    .hero {
+      padding: 2.5rem 0 2rem;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 2rem;
+    }
+    .hero h1 {
+      font-size: 1.75rem;
+      font-weight: 800;
+      letter-spacing: -.02em;
+      margin-bottom: .35rem;
+      color: var(--text);
+    }
+    .hero .meta {
+      color: var(--text-muted);
+      font-size: .9rem;
+    }
+    .hero .meta span {
+      display: inline-flex;
+      align-items: center;
+      gap: .3rem;
+    }
+
+    /* ── Two-column layout ── */
+    .layout {
+      display: grid;
+      grid-template-columns: 200px 1fr;
+      gap: 2.5rem;
+      align-items: start;
+    }
+    @media (max-width: 680px) {
+      .layout { grid-template-columns: 1fr; }
+      .toc-wrap { display: none; }
+    }
+
+    /* ── TOC ── */
+    .toc-wrap {
+      position: sticky;
+      top: 1.5rem;
+    }
+    .toc {
+      background: var(--bg-subtle);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1rem;
+      font-size: .82rem;
+    }
+    .toc-title {
+      font-weight: 700;
+      font-size: .75rem;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+      color: var(--text-muted);
+      margin-bottom: .65rem;
+    }
+    .toc ol {
+      list-style: none;
+      padding: 0;
+      counter-reset: toc;
+    }
+    .toc li {
+      counter-increment: toc;
+      margin-bottom: .3rem;
+      line-height: 1.4;
+    }
+    .toc a {
+      color: var(--text-muted);
+      text-decoration: none;
+      display: flex;
+      gap: .4rem;
+      transition: color .15s;
+    }
+    .toc a:hover { color: var(--brand); }
+    .toc a::before {
+      content: counter(toc) ".";
+      font-size: .75rem;
+      flex-shrink: 0;
+      padding-top: .05rem;
+    }
+
+    /* ── Content ── */
+    .content section { margin-bottom: 2.25rem; }
+
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: .55rem;
+      margin-bottom: .75rem;
+    }
+    .section-num {
+      width: 26px;
+      height: 26px;
+      border-radius: 6px;
+      background: var(--brand-light);
+      color: var(--brand);
+      font-size: .75rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    h2 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--text);
+    }
+    h3 {
+      font-size: .95rem;
+      font-weight: 600;
+      color: var(--text);
+      margin: 1.25rem 0 .5rem;
+    }
+    p { margin-bottom: .75rem; color: var(--text); }
+    ul, ol { padding-left: 1.5rem; margin-bottom: .75rem; }
+    li { margin-bottom: .35rem; }
+    a { color: var(--brand); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    code {
+      font-family: "SF Mono", "Fira Code", Consolas, monospace;
+      font-size: .85em;
+      background: #f3f4f6;
+      padding: .1em .35em;
+      border-radius: 4px;
+      color: #374151;
+    }
+
+    /* ── Tables ── */
+    .table-wrap {
+      overflow-x: auto;
+      margin: .75rem 0 1rem;
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: .9rem;
+    }
+    th {
+      background: var(--bg-subtle);
+      font-weight: 600;
+      font-size: .8rem;
+      text-transform: uppercase;
+      letter-spacing: .04em;
+      color: var(--text-muted);
+      padding: .6rem .85rem;
+      text-align: left;
+      border-bottom: 1px solid var(--border);
+    }
+    td {
+      padding: .6rem .85rem;
+      border-bottom: 1px solid var(--border);
+      vertical-align: top;
+    }
+    tr:last-child td { border-bottom: none; }
+    tr:nth-child(even) td { background: var(--bg-subtle); }
+
+    /* ── Note / Callout ── */
+    .note {
+      display: flex;
+      gap: .75rem;
+      background: var(--brand-light);
+      border: 1px solid #bfdbfe;
+      border-radius: var(--radius);
+      padding: .8rem 1rem;
+      margin: .75rem 0;
+      font-size: .9rem;
+      align-items: flex-start;
+    }
+    .note-icon { flex-shrink: 0; margin-top: .05rem; }
+    .note-icon svg { fill: var(--brand); }
+
+    /* ── "We don't" badge list ── */
+    .shield-list {
+      list-style: none;
+      padding: 0;
+      display: grid;
+      gap: .5rem;
+    }
+    .shield-list li {
+      display: flex;
+      gap: .65rem;
+      align-items: flex-start;
+      background: var(--bg-subtle);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: .6rem .9rem;
+      font-size: .9rem;
+      margin: 0;
+    }
+    .shield-list li::before { content: none; }
+    .check { color: #16a34a; flex-shrink: 0; margin-top: .1rem; }
+
+    /* ── Contact card ── */
+    .contact-card {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      background: var(--bg-subtle);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1rem 1.25rem;
+      margin-top: .5rem;
+    }
+    .avatar {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: var(--brand);
+      color: #fff;
+      font-weight: 700;
+      font-size: 1.1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .contact-info .name { font-weight: 600; font-size: .95rem; }
+    .contact-info .email { font-size: .85rem; color: var(--text-muted); }
+    .contact-info .email a { color: var(--brand); }
+
+    /* ── Footer ── */
+    footer {
+      margin-top: 3rem;
+      padding-top: 1.25rem;
+      border-top: 1px solid var(--border);
+      color: var(--text-muted);
+      font-size: .82rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: .5rem;
+      justify-content: space-between;
+      align-items: center;
+    }
+    footer .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: .35rem;
+      background: var(--bg-subtle);
+      border: 1px solid var(--border);
+      border-radius: 99px;
+      padding: .2rem .65rem;
+      font-size: .78rem;
+    }
+    footer .dot {
+      width: 6px; height: 6px;
+      background: #16a34a;
+      border-radius: 50%;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <div class="app-icon">
+      <svg width="20" height="20" viewBox="0 0 24 24"><path d="M17 3H7a2 2 0 0 0-2 2v16l7-3 7 3V5a2 2 0 0 0-2-2z"/></svg>
+    </div>
+    <div>
+      <div class="brand-name">LinkShelfAI</div>
+      <div class="brand-sub">Personal Link Organizer</div>
+    </div>
+  </div>
+</header>
+
+<div class="page">
+  <div class="hero">
+    <h1>Privacy Policy</h1>
+    <p class="meta">
+      <span>Last updated: May 3, 2026</span>
+    </p>
+  </div>
+
+  <div class="layout">
+
+    <!-- TOC -->
+    <aside class="toc-wrap">
+      <nav class="toc">
+        <div class="toc-title">Contents</div>
+        <ol>
+          <li><a href="#intro">Introduction</a></li>
+          <li><a href="#contact">Developer Contact</a></li>
+          <li><a href="#data-collect">Data We Collect</a></li>
+          <li><a href="#data-not">Data We Do NOT Collect</a></li>
+          <li><a href="#data-use">How We Use Your Data</a></li>
+          <li><a href="#third-party">Third-Party Services</a></li>
+          <li><a href="#retention">Data Retention</a></li>
+          <li><a href="#security">Data Security</a></li>
+          <li><a href="#children">Children's Privacy</a></li>
+          <li><a href="#rights">Your Rights</a></li>
+          <li><a href="#changes">Changes to This Policy</a></li>
+          <li><a href="#permissions">Permissions Used</a></li>
+        </ol>
+      </nav>
+    </aside>
+
+    <!-- Main content -->
+    <main class="content">
+
+      <section id="intro">
+        <div class="section-header">
+          <div class="section-num">1</div>
+          <h2>Introduction</h2>
+        </div>
+        <p>LinkShelfAI ("the App") is a personal link organizer that lets you save, categorize, and manage links on your mobile device. This Privacy Policy explains what data we collect, how we use it, and your rights regarding that data.</p>
+        <p>By using LinkShelfAI, you agree to the practices described in this policy.</p>
+      </section>
+
+      <section id="contact">
+        <div class="section-header">
+          <div class="section-num">2</div>
+          <h2>Developer Contact</h2>
+        </div>
+        <p>If you have any questions or concerns about this policy, reach out directly:</p>
+        <div class="contact-card">
+          <div class="avatar">P</div>
+          <div class="contact-info">
+            <div class="name">Pritimoy</div>
+            <div class="email"><a href="mailto:pritimoy54@gmail.com">pritimoy54@gmail.com</a></div>
+          </div>
+        </div>
+      </section>
+
+      <section id="data-collect">
+        <div class="section-header">
+          <div class="section-num">3</div>
+          <h2>Data We Collect</h2>
+        </div>
+
+        <h3>3.1 Data You Provide Directly</h3>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Data</th><th>Purpose</th></tr></thead>
+            <tbody>
+              <tr><td>Links (URLs, titles, notes)</td><td>Core app functionality — organizing your saved links</td></tr>
+              <tr><td>Folder names</td><td>Organizing links into categories</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3>3.2 Data Collected via Google Sign-In (Optional)</h3>
+        <p>If you choose to sign in with Google, we receive the following from Google:</p>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Data</th><th>Source</th><th>Purpose</th></tr></thead>
+            <tbody>
+              <tr><td>Google User ID</td><td>Google OAuth</td><td>Identifying your account locally</td></tr>
+              <tr><td>Email address</td><td>Google OAuth</td><td>Displaying your profile</td></tr>
+              <tr><td>Display name</td><td>Google OAuth</td><td>Displaying your profile</td></tr>
+              <tr><td>Profile photo URL</td><td>Google OAuth</td><td>Displaying your avatar</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="note">
+          <span class="note-icon">
+            <svg width="16" height="16" viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 0 20A10 10 0 0 0 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
+          </span>
+          <span>Google Sign-In is <strong>optional</strong>. The App functions fully without signing in. Signing in unlocks the Google Drive backup feature.</span>
+        </div>
+
+        <h3>3.3 Data Stored for Backup (Optional)</h3>
+        <p>If you enable Google Drive backup, we store a single backup file (<code>linkshelf_backup.json</code>) in your <strong>Google Drive App Data folder</strong>. This folder is:</p>
+        <ul>
+          <li>Private to LinkShelfAI — no other app or person can access it</li>
+          <li>Not visible in your regular Google Drive file list</li>
+          <li>Accessible only through your Google account</li>
+        </ul>
+        <p>The backup file contains your folders and links data.</p>
+      </section>
+
+      <section id="data-not">
+        <div class="section-header">
+          <div class="section-num">4</div>
+          <h2>Data We Do NOT Collect</h2>
+        </div>
+        <ul class="shield-list">
+          <li><span class="check">✓</span> No analytics or usage telemetry collected.</li>
+          <li><span class="check">✓</span> No tracking of browsing activity or content of saved links.</li>
+          <li><span class="check">✓</span> No advertising SDKs — your data is never sold to third parties.</li>
+          <li><span class="check">✓</span> No server of our own — no backend database for your personal data.</li>
+        </ul>
+      </section>
+
+      <section id="data-use">
+        <div class="section-header">
+          <div class="section-num">5</div>
+          <h2>How We Use Your Data</h2>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Data</th><th>Use</th></tr></thead>
+            <tbody>
+              <tr><td>Links and folders</td><td>Stored locally on your device only</td></tr>
+              <tr><td>Google profile info</td><td>Displayed in-app; stored locally in encrypted storage</td></tr>
+              <tr><td>Google Drive backup file</td><td>Restore your data across devices or after reinstall</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>All personal data is stored <strong>on your device</strong> using encrypted local storage. We do not transmit your data to any server we operate.</p>
+      </section>
+
+      <section id="third-party">
+        <div class="section-header">
+          <div class="section-num">6</div>
+          <h2>Third-Party Services</h2>
+        </div>
+        <p>LinkShelfAI integrates with the following third-party services:</p>
+
+        <h3>Google Sign-In</h3>
+        <p>Used for optional authentication.<br />
+        Privacy policy: <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">policies.google.com/privacy</a></p>
+
+        <h3>Google Drive API</h3>
+        <p>Used to store and retrieve your backup file in your own Drive App Data folder.<br />
+        Privacy policy: <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">policies.google.com/privacy</a></p>
+        <p>These services are governed by Google's privacy policies. We only request the minimum necessary permissions (profile info and App Data folder access).</p>
+      </section>
+
+      <section id="retention">
+        <div class="section-header">
+          <div class="section-num">7</div>
+          <h2>Data Retention</h2>
+        </div>
+        <ul>
+          <li><strong>Local data</strong> remains on your device until you delete the app or manually delete folders/links.</li>
+          <li><strong>Google Drive backup</strong> remains in your Drive App Data folder until you sign out of the app or manually delete it from Google Drive settings.</li>
+          <li>On sign-out, locally cached Google profile data is removed from the device.</li>
+        </ul>
+      </section>
+
+      <section id="security">
+        <div class="section-header">
+          <div class="section-num">8</div>
+          <h2>Data Security</h2>
+        </div>
+        <ul>
+          <li>Local data stored using <code>flutter_secure_storage</code>, which uses Android Keystore / iOS Keychain encryption.</li>
+          <li>Communication with Google Drive uses HTTPS and OAuth 2.0.</li>
+          <li>We do not store your Google credentials — authentication handled entirely by Google's SDK.</li>
+        </ul>
+      </section>
+
+      <section id="children">
+        <div class="section-header">
+          <div class="section-num">9</div>
+          <h2>Children's Privacy</h2>
+        </div>
+        <p>LinkShelfAI is not directed at children under 13. We do not knowingly collect personal information from children under 13. If you believe a child has provided us with personal data, contact us at <a href="mailto:pritimoy54@gmail.com">pritimoy54@gmail.com</a> and we will delete it.</p>
+      </section>
+
+      <section id="rights">
+        <div class="section-header">
+          <div class="section-num">10</div>
+          <h2>Your Rights</h2>
+        </div>
+        <p>You have the right to:</p>
+        <ul>
+          <li><strong>Access</strong> — view the data stored in the app at any time within the app itself.</li>
+          <li><strong>Delete</strong> — delete any link, folder, or your entire local data by uninstalling the app.</li>
+          <li><strong>Revoke Google access</strong> — go to <a href="https://myaccount.google.com" target="_blank" rel="noopener">myaccount.google.com</a> → Security → Third-party apps and revoke LinkShelfAI's access at any time.</li>
+          <li><strong>Delete Drive backup</strong> — go to Google Drive settings → Manage apps → LinkShelfAI → Delete hidden app data.</li>
+        </ul>
+      </section>
+
+      <section id="changes">
+        <div class="section-header">
+          <div class="section-num">11</div>
+          <h2>Changes to This Policy</h2>
+        </div>
+        <p>We may update this policy as the app evolves. Changes will be reflected by updating the "Last updated" date at the top of this document. Continued use of the app after changes constitutes acceptance of the updated policy.</p>
+      </section>
+
+      <section id="permissions">
+        <div class="section-header">
+          <div class="section-num">12</div>
+          <h2>Permissions Used</h2>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Android Permission</th><th>Reason</th></tr></thead>
+            <tbody>
+              <tr><td><code>INTERNET</code></td><td>Connect to Google Sign-In and Google Drive API</td></tr>
+              <tr><td><code>RECEIVE_BOOT_COMPLETED</code></td><td>Reschedule automatic backup after device restart</td></tr>
+              <tr><td><code>FOREGROUND_SERVICE</code></td><td>Run backup task in the background</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>No permissions for camera, microphone, contacts, location, or SMS are used.</p>
+      </section>
+
+      <footer>
+        <span>© 2026 LinkShelfAI · Pritimoy</span>
+        <span class="badge"><span class="dot"></span>Applies to v1.0 and later</span>
+      </footer>
+
+    </main>
+  </div>
+</div>
+
+</body>
+</html>
