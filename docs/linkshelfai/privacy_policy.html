@@ -404,8 +404,8 @@
           <table>
             <thead><tr><th>Data</th><th>Purpose</th></tr></thead>
             <tbody>
-              <tr><td>Links (URLs, titles, notes)</td><td>Core app functionality — organizing your saved links</td></tr>
-              <tr><td>Folder names</td><td>Organizing links into categories</td></tr>
+            <tr><td>Links (URLs, titles, notes)</td><td>Core app functionality — organizing your saved links</td></tr>
+            <tr><td>Folder names</td><td>Organizing links into categories</td></tr>
             </tbody>
           </table>
         </div>
@@ -416,10 +416,10 @@
           <table>
             <thead><tr><th>Data</th><th>Source</th><th>Purpose</th></tr></thead>
             <tbody>
-              <tr><td>Google User ID</td><td>Google OAuth</td><td>Identifying your account locally</td></tr>
-              <tr><td>Email address</td><td>Google OAuth</td><td>Displaying your profile</td></tr>
-              <tr><td>Display name</td><td>Google OAuth</td><td>Displaying your profile</td></tr>
-              <tr><td>Profile photo URL</td><td>Google OAuth</td><td>Displaying your avatar</td></tr>
+            <tr><td>Google User ID</td><td>Google OAuth</td><td>Identifying your account locally</td></tr>
+            <tr><td>Email address</td><td>Google OAuth</td><td>Displaying your profile</td></tr>
+            <tr><td>Display name</td><td>Google OAuth</td><td>Displaying your profile</td></tr>
+            <tr><td>Profile photo URL</td><td>Google OAuth</td><td>Displaying your avatar</td></tr>
             </tbody>
           </table>
         </div>
@@ -448,7 +448,8 @@
         <ul class="shield-list">
           <li><span class="check">✓</span> No analytics or usage telemetry collected.</li>
           <li><span class="check">✓</span> No tracking of browsing activity or content of saved links.</li>
-          <li><span class="check">✓</span> No advertising SDKs — your data is never sold to third parties.</li>
+          <li><span class="check">✓</span> We do not sell your data to third parties.</li>
+          <li><span class="check">✓</span> Ads are served by Google AdMob. The Advertising ID it uses is never shared with us — it stays between AdMob and your device.</li>
           <li><span class="check">✓</span> No server of our own — no backend database for your personal data.</li>
         </ul>
       </section>
@@ -462,9 +463,9 @@
           <table>
             <thead><tr><th>Data</th><th>Use</th></tr></thead>
             <tbody>
-              <tr><td>Links and folders</td><td>Stored locally on your device only</td></tr>
-              <tr><td>Google profile info</td><td>Displayed in-app; stored locally in encrypted storage</td></tr>
-              <tr><td>Google Drive backup file</td><td>Restore your data across devices or after reinstall</td></tr>
+            <tr><td>Links and folders</td><td>Stored locally on your device only</td></tr>
+            <tr><td>Google profile info</td><td>Displayed in-app; stored locally in encrypted storage</td></tr>
+            <tr><td>Google Drive backup file</td><td>Restore your data across devices or after reinstall</td></tr>
             </tbody>
           </table>
         </div>
@@ -480,12 +481,17 @@
 
         <h3>Google Sign-In</h3>
         <p>Used for optional authentication.<br />
-        Privacy policy: <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">policies.google.com/privacy</a></p>
+          Privacy policy: <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">policies.google.com/privacy</a></p>
 
         <h3>Google Drive API</h3>
         <p>Used to store and retrieve your backup file in your own Drive App Data folder.<br />
-        Privacy policy: <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">policies.google.com/privacy</a></p>
-        <p>These services are governed by Google's privacy policies. We only request the minimum necessary permissions (profile info and App Data folder access).</p>
+          Privacy policy: <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">policies.google.com/privacy</a></p>
+
+        <h3>Google AdMob</h3>
+        <p>Used to display banner advertisements inside the app. AdMob may collect and use the <strong>Advertising ID</strong> on your device to serve relevant ads. We do not receive or store this data ourselves.<br />
+          Privacy policy: <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">policies.google.com/privacy</a></p>
+
+        <p>These services are governed by Google's privacy policies. We only request the minimum necessary permissions (profile info, App Data folder access, and Advertising ID for ads).</p>
       </section>
 
       <section id="retention">
@@ -551,9 +557,10 @@
           <table>
             <thead><tr><th>Android Permission</th><th>Reason</th></tr></thead>
             <tbody>
-              <tr><td><code>INTERNET</code></td><td>Connect to Google Sign-In and Google Drive API</td></tr>
-              <tr><td><code>RECEIVE_BOOT_COMPLETED</code></td><td>Reschedule automatic backup after device restart</td></tr>
-              <tr><td><code>FOREGROUND_SERVICE</code></td><td>Run backup task in the background</td></tr>
+            <tr><td><code>INTERNET</code></td><td>Connect to Google Sign-In and Google Drive API</td></tr>
+            <tr><td><code>RECEIVE_BOOT_COMPLETED</code></td><td>Reschedule automatic backup after device restart</td></tr>
+            <tr><td><code>FOREGROUND_SERVICE</code></td><td>Run backup task in the background</td></tr>
+            <tr><td><code>com.google.android.gms.permission.AD_ID</code></td><td>Required by Google AdMob to serve banner ads (Android 13+)</td></tr>
             </tbody>
           </table>
         </div>
